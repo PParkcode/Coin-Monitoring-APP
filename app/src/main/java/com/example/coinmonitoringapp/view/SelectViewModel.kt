@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.coinmonitoringapp.dataModel.CurrentPrice
 import com.example.coinmonitoringapp.dataModel.CurrentPriceResult
+import com.example.coinmonitoringapp.dataStore.MyDataStore
 import com.example.coinmonitoringapp.repository.NetworkRepository
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -53,6 +54,10 @@ class SelectViewModel : ViewModel() {
         }
 
         _currentPriceResult.value = currentPriceResultList
+    }
+
+    fun setUpFirstFlag() = viewModelScope.launch {
+        MyDataStore().setUpFirstData()
     }
 
 }

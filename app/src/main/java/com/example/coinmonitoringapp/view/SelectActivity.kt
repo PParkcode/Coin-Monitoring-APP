@@ -1,10 +1,12 @@
 package com.example.coinmonitoringapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.coinmonitoringapp.MainActivity
 import com.example.coinmonitoringapp.R
 import com.example.coinmonitoringapp.databinding.ActivitySelectBinding
 import com.example.coinmonitoringapp.view.adapter.SelectRVAdapter
@@ -33,5 +35,12 @@ class SelectActivity : AppCompatActivity() {
             binding.coinListRV.layoutManager = LinearLayoutManager(this)
 
         })
+        //FirstFlag 초기 설정
+        viewModel.setUpFirstFlag()
+
+        binding.laterTextArea.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
