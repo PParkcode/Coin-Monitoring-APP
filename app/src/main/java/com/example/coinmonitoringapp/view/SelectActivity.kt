@@ -3,6 +3,7 @@ package com.example.coinmonitoringapp.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,8 +40,17 @@ class SelectActivity : AppCompatActivity() {
         viewModel.setUpFirstFlag()
 
         binding.laterTextArea.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            viewModel.setUpFirstFlag()
+            viewModel.saveSelectedCoinList(selectRVAdapter.selectedCoinList)
+            Toast.makeText(this,"버튼 클릭",Toast.LENGTH_SHORT).show()
+
+
         }
+        viewModel.save.observe(this, Observer {
+            if(it.equals("done")){
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 }

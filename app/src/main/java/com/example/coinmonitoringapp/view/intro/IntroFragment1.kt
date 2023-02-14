@@ -13,7 +13,7 @@ import com.example.coinmonitoringapp.databinding.FragmentIntro1Binding
 
 class IntroFragment1 : Fragment() {
 
-    private var _binding:FragmentIntro1Binding?=null
+    private var _binding: FragmentIntro1Binding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class IntroFragment1 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding=FragmentIntro1Binding.inflate(inflater,container,false)
+        _binding = FragmentIntro1Binding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -32,14 +32,15 @@ class IntroFragment1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.nextBtn.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_introFragment1_to_introFragment2)
+        binding.nextBtn.setOnClickListener {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_introFragment1_to_introFragment2)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding=null
+        _binding = null
     }
 
 }
