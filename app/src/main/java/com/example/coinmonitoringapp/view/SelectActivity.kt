@@ -7,11 +7,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.coinmonitoringapp.MainActivity
-import com.example.coinmonitoringapp.R
+import com.example.coinmonitoringapp.view.main.MainActivity
 import com.example.coinmonitoringapp.databinding.ActivitySelectBinding
 import com.example.coinmonitoringapp.view.adapter.SelectRVAdapter
-import timber.log.Timber
 
 class SelectActivity : AppCompatActivity() {
 
@@ -48,7 +46,7 @@ class SelectActivity : AppCompatActivity() {
         }
         viewModel.save.observe(this, Observer {
             if(it.equals("done")){
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         })

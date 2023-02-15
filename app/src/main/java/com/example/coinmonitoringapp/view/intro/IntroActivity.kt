@@ -7,10 +7,8 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
-import com.example.coinmonitoringapp.MainActivity
-import com.example.coinmonitoringapp.R
+import com.example.coinmonitoringapp.view.main.MainActivity
 import com.example.coinmonitoringapp.databinding.ActivityIntroBinding
-import timber.log.Timber
 
 //Splash 화면 만들기
 //Android Splash Screen 이용할 것
