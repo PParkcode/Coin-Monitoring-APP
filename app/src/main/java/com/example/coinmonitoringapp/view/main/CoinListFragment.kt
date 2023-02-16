@@ -13,6 +13,7 @@ import com.example.coinmonitoringapp.R
 import com.example.coinmonitoringapp.databinding.FragmentCoinListBinding
 import com.example.coinmonitoringapp.db.entity.InterestCoinEntity
 import com.example.coinmonitoringapp.view.adapter.CoinListRVAdapter
+import timber.log.Timber
 
 
 class CoinListFragment : Fragment() {
@@ -45,6 +46,7 @@ class CoinListFragment : Fragment() {
         viewModel.getAllInterestCoinData()
         viewModel.selectedCoinList.observe(viewLifecycleOwner, Observer {
 
+            Timber.d("selectedCoinList 데이터 변화~~~")
             selectedList.clear()
             unSelectedList.clear()
             for (item in it) {

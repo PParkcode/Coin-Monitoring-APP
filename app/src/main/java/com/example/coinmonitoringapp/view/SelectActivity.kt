@@ -7,9 +7,14 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import com.example.coinmonitoringapp.background.GetCoinPriceRecentContractedWorkManager
 import com.example.coinmonitoringapp.view.main.MainActivity
 import com.example.coinmonitoringapp.databinding.ActivitySelectBinding
 import com.example.coinmonitoringapp.view.adapter.SelectRVAdapter
+import java.util.concurrent.TimeUnit
 
 class SelectActivity : AppCompatActivity() {
 
@@ -48,7 +53,26 @@ class SelectActivity : AppCompatActivity() {
             if(it.equals("done")){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+
+                // 가장 처음으로 저장한 코인 정보가 저장되는 시점
+                saveInterestCoinDataPeriodic()
             }
         })
     }
+
+    private fun saveInterestCoinDataPeriodic() {
+
+        val myWork = PeriodicWorkRequest.Builder(
+            GetCoinPriceRecentContractedWorkManager::class.java,
+            15,
+            TimeUnit.MINUTES
+        ).build()
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "GetCoinPriceRecentContractedWorkManager",
+            ExistingPeriodicWorkPolicy.KEEP,
+            myWork
+        )
+    }
+
 }
